@@ -1,6 +1,14 @@
-const TextBox = (props) => (
+const TextBox = ({children}) => (
   DOM.span(
     {},
-    props.children
+    children
   )
 );
+
+TextBox.propTypes = {
+  children: PropTypes.string.isRequired
+}
+
+TextBox.defaultProps = {
+  children: "Default post text"
+}
