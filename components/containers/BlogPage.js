@@ -51,12 +51,30 @@ class BlogPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { posts };
+    this.state = { posts: posts };
+    this.incrementLikeCount = this.incrementLikeCount.bind(this);
+  }
+
+  incrementLikeCount(post_id) {
+    const { posts } = this.state;
+
+    const index = _.findIndex(posts, {id: post_id});
+
+    if (index != -1) {
+      posts[index].meta.like_count = posts[index].meta.like_count + 1;
+
+      this.setState({
+       posts: posts
+      });
+    }
   }
 
   render() {
-    const { posts } = this.state;
-
-    return React.createElement(BlogList, { posts: posts })
+    return(
+      <div>
+        <BlogList posts={this.state.posts} incrementLikeCount={this.incrementLikeCount}/>
+        <Chart columns={[...this.state.posts.map( (post) => [post.text, post.meta.like_count]) ]}/>
+      </div>
+    )
   }
 }
