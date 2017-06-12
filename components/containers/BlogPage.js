@@ -57,14 +57,14 @@ class BlogPage extends React.Component {
 
   incrementLikeCount(post_id) {
     const { posts } = this.state;
-
     const index = _.findIndex(posts, {id: post_id});
 
     if (index != -1) {
-      posts[index].meta.like_count = posts[index].meta.like_count + 1;
+      const updatePosts = cloneDeep(posts);
+      updatePosts[index].meta.like_count = updatePosts[index].meta.like_count + 1;
 
       this.setState({
-       posts: posts
+       posts: updatePosts
       });
     }
   }
