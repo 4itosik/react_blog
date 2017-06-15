@@ -8,6 +8,9 @@ var root = path.join(process.cwd(), 'src');
 
 module.exports = {
   entry: [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:9292',
+    'webpack/hot/only-dev-server',
     './src/index.js'
   ],
 
@@ -20,7 +23,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$|.jsx$/,
+        test: /\.jsx*$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
@@ -35,5 +38,9 @@ module.exports = {
       "node_modules"
     ],
     extensions: ['.js', '.jsx']
-  }
+  },
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
