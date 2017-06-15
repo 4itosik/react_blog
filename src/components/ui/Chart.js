@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 class Chart extends React.Component {
   componentDidMount() {
     this.chart = c3.generate(
@@ -25,3 +28,5 @@ class Chart extends React.Component {
     );
   }
 }
+
+export default Chart;

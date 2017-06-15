@@ -1,3 +1,11 @@
+import React, { DOM } from 'react';
+import PropTypes from 'prop-types';
+
+import Image from '../ui/Image';
+import TextBox from '../ui/TextBox';
+import Meta from '../ui/Meta';
+import Like from '../ui/Like';
+
 const BlogItem = ({post, incrementLikeCount}) => (
   DOM.div(
     {},
@@ -22,3 +30,5 @@ BlogItem.propTypes = {
     image: PropTypes.shape(Image.propTypes)
   })
 }
+
+export default BlogItem;

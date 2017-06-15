@@ -1,3 +1,6 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 const Like = ({post_id, count, incrementLikeCount}) => (
   <div className='count'>
     <p>Like: {count}</p>
@@ -12,3 +15,5 @@ Like.propTypes = {
 Like.defaultProps = {
   count: 0
 }
+
+export default Like;

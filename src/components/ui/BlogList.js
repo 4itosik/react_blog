@@ -1,3 +1,8 @@
+import React, { DOM } from 'react';
+import _ from 'lodash';
+
+import BlogItem from './BlogItem';
+
 class BlogList extends React.Component {
   render() {
     const { posts } = this.props;
@@ -13,3 +18,5 @@ class BlogList extends React.Component {
     )
   }
 }
+
+export default BlogList;
