@@ -29,9 +29,16 @@ class BlogPage extends React.Component {
 
   render() {
     return(
-      <div>
-        <BlogList posts={this.state.posts} incrementLikeCount={this.incrementLikeCount}/>
-        <Chart columns={[...this.state.posts.map( (post) => [post.text, post.meta.like_count]) ]}/>
+      <div className="container">
+        <div className="row">
+          <BlogList posts={this.state.posts} incrementLikeCount={this.incrementLikeCount}/>
+        </div>
+
+        <div className="row">
+          <div className="col-sm-8 col-sm-offset-2">
+            <Chart columns={[...this.state.posts.map( (post) => [post.text, post.meta.like_count]) ]}/>
+          </div>
+        </div>
       </div>
     )
   }

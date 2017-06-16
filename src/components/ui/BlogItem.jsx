@@ -7,14 +7,12 @@ import Meta from '../ui/Meta';
 import Like from '../ui/Like';
 
 const BlogItem = ({post, incrementLikeCount}) => (
-  DOM.div(
-    {},
-    React.createElement(Image, post.image),
-    React.createElement(TextBox, {}, post.text),
-    React.createElement(Meta, post.meta),
-    React.createElement(Like,
- { post_id: post.id, count: post.meta.like_count, incrementLikeCount: incrementLikeCount })
-  )
+  <div className='col-sm-4'>
+    <Image {...post.image} />
+    <TextBox>{post.text}</TextBox>
+    <Meta {...post.meta} />
+    <Like post_id={post.id} count={post.meta.like_count} incrementLikeCount={incrementLikeCount} />
+  </div>
 );
 
 BlogItem.propTypes = {

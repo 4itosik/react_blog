@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const TextBox = ({children}) => (
   DOM.span(
     {},
-    children
+    <h3 className="text-center">{children}</h3>
   )
 );
 

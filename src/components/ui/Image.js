@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Image = ({src, width, height, alt}) => (
   React.createElement(
     'img',
-    { src, width, height, alt }
+    { src, width, height, alt, className: "center-block" }
   )
 );
 
