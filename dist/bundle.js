@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "dad3b73f99c081e00416"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ec9c74e7e1474fa0bf0b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -40342,7 +40342,7 @@ var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var rootEl = document.getElementById("app");
+var rootEl = document.getElementById('app');
 
 _reactDom2.default.render(_react2.default.createElement(
   _reactHotLoader.AppContainer,
@@ -40898,14 +40898,14 @@ var BlogPage = function (_React$Component) {
 
   _createClass(BlogPage, [{
     key: 'incrementLikeCount',
-    value: function incrementLikeCount(post_id) {
+    value: function incrementLikeCount(postId) {
       var posts = this.state.posts;
 
-      var index = _lodash2.default.findIndex(posts, { id: post_id });
+      var index = _lodash2.default.findIndex(posts, { id: postId });
 
       if (index != -1) {
         var updatePosts = _lodash2.default.cloneDeep(posts);
-        updatePosts[index].meta.like_count = updatePosts[index].meta.like_count + 1;
+        updatePosts[index].meta.likeCount = updatePosts[index].meta.likeCount + 1;
 
         this.setState({
           posts: updatePosts
@@ -40930,7 +40930,7 @@ var BlogPage = function (_React$Component) {
             'div',
             { className: 'col-sm-8 col-sm-offset-2' },
             _react2.default.createElement(_Chart2.default, { columns: [].concat(_toConsumableArray(this.state.posts.map(function (post) {
-                return [post.text, post.meta.like_count];
+                return [post.text, post.meta.likeCount];
               }))) })
           )
         )
@@ -41007,7 +41007,7 @@ var BlogItem = function BlogItem(_ref) {
       post.text
     ),
     _react2.default.createElement(_Meta2.default, post.meta),
-    _react2.default.createElement(_Like2.default, { post_id: post.id, count: post.meta.like_count, incrementLikeCount: incrementLikeCount })
+    _react2.default.createElement(_Like2.default, { post_id: post.id, count: post.meta.likeCount, incrementLikeCount: incrementLikeCount })
   );
 };
 
@@ -41227,7 +41227,7 @@ var Image = function Image(_ref) {
       width = _ref.width,
       height = _ref.height,
       alt = _ref.alt;
-  return _react2.default.createElement('img', { src: src, width: width, height: height, alt: alt, className: "center-block" });
+  return _react2.default.createElement('img', { src: src, width: width, height: height, alt: alt, className: 'center-block' });
 };
 
 Image.propTypes = {
@@ -41238,8 +41238,8 @@ Image.propTypes = {
 };
 
 Image.defaultProps = {
-  src: "https://lh3.googleusercontent.com/nYhPnY2I-e9rpqnid9u9aAODz4C04OycEGxqHG5vxFnA35OGmLMrrUmhM9eaHKJ7liB-=w300",
-  alt: "Default Alt",
+  src: 'https://lh3.googleusercontent.com/nYhPnY2I-e9rpqnid9u9aAODz4C04OycEGxqHG5vxFnA35OGmLMrrUmhM9eaHKJ7liB-=w300',
+  alt: 'Default Alt',
   width: 100,
   height: 100
 };
@@ -41423,7 +41423,7 @@ TextBox.propTypes = {
 };
 
 TextBox.defaultProps = {
-  children: "Default post text"
+  children: 'Default post text'
 };
 
 var _default = TextBox;
@@ -41454,46 +41454,46 @@ Object.defineProperty(exports, "__esModule", {
 });
 var posts = [{
   id: 1,
-  text: "1 запись",
+  text: '1 запись',
   image: {
-    src: "https://lh3.googleusercontent.com/nYhPnY2I-e9rpqnid9u9aAODz4C04OycEGxqHG5vxFnA35OGmLMrrUmhM9eaHKJ7liB-=w300",
-    alt: "1 запись"
+    src: 'https://lh3.googleusercontent.com/nYhPnY2I-e9rpqnid9u9aAODz4C04OycEGxqHG5vxFnA35OGmLMrrUmhM9eaHKJ7liB-=w300',
+    alt: '1 запись'
   },
   meta: {
-    author: "Иван 3",
-    createdAt: "2013-05-12",
-    updatedAt: "2013-05-12",
-    like_count: 40
+    author: 'Иван 3',
+    createdAt: '2013-05-12',
+    updatedAt: '2013-05-12',
+    likeCount: 40
   }
 }, {
   id: 2,
-  text: "2 запись",
+  text: '2 запись',
   image: {
-    src: "https://lh3.googleusercontent.com/nYhPnY2I-e9rpqnid9u9aAODz4C04OycEGxqHG5vxFnA35OGmLMrrUmhM9eaHKJ7liB-=w300",
-    alt: "2 запись",
+    src: 'https://lh3.googleusercontent.com/nYhPnY2I-e9rpqnid9u9aAODz4C04OycEGxqHG5vxFnA35OGmLMrrUmhM9eaHKJ7liB-=w300',
+    alt: '2 запись',
     width: 100,
     height: 100
   },
   meta: {
-    author: "Иван",
-    createdAt: "2013-05-12",
-    updatedAt: "2013-05-12",
-    like_count: 30
+    author: 'Иван',
+    createdAt: '2013-05-12',
+    updatedAt: '2013-05-12',
+    likeCount: 30
   }
 }, {
   id: 3,
-  text: "3 запись",
+  text: '3 запись',
   image: {
-    src: "https://lh3.googleusercontent.com/nYhPnY2I-e9rpqnid9u9aAODz4C04OycEGxqHG5vxFnA35OGmLMrrUmhM9eaHKJ7liB-=w300",
-    alt: "3 запись",
+    src: 'https://lh3.googleusercontent.com/nYhPnY2I-e9rpqnid9u9aAODz4C04OycEGxqHG5vxFnA35OGmLMrrUmhM9eaHKJ7liB-=w300',
+    alt: '3 запись',
     width: 100,
     height: 100
   },
   meta: {
-    author: "Иван",
-    createdAt: "2013-05-12",
-    updatedAt: "2013-05-12",
-    like_count: 20
+    author: 'Иван',
+    createdAt: '2013-05-12',
+    updatedAt: '2013-05-12',
+    likeCount: 20
   }
 }];
 
@@ -41506,9 +41506,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(posts, "posts", "/Users/artemadamtsov/js/react_blog/src/helpers/posts.js");
+  __REACT_HOT_LOADER__.register(posts, 'posts', '/Users/artemadamtsov/js/react_blog/src/helpers/posts.js');
 
-  __REACT_HOT_LOADER__.register(_default, "default", "/Users/artemadamtsov/js/react_blog/src/helpers/posts.js");
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/artemadamtsov/js/react_blog/src/helpers/posts.js');
 }();
 
 ;

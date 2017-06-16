@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-import posts from 'helpers/posts'
+import posts from 'helpers/posts';
 import BlogList from '../ui/BlogList';
 import Chart from '../ui/Chart';
 
@@ -9,26 +9,26 @@ class BlogPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { posts: posts };
+    this.state = { posts };
     this.incrementLikeCount = this.incrementLikeCount.bind(this);
   }
 
-  incrementLikeCount(post_id) {
+  incrementLikeCount(postId) {
     const { posts } = this.state;
-    const index = _.findIndex(posts, {id: post_id});
+    const index = _.findIndex(posts, {id: postId});
 
     if (index != -1) {
       const updatePosts = _.cloneDeep(posts);
-      updatePosts[index].meta.like_count = updatePosts[index].meta.like_count + 1;
+      updatePosts[index].meta.likeCount = updatePosts[index].meta.likeCount + 1;
 
       this.setState({
-       posts: updatePosts
+        posts: updatePosts
       });
     }
   }
 
   render() {
-    return(
+    return (
       <div className="container">
         <div className="row">
           <BlogList posts={this.state.posts} incrementLikeCount={this.incrementLikeCount}/>
@@ -36,11 +36,11 @@ class BlogPage extends React.Component {
 
         <div className="row">
           <div className="col-sm-8 col-sm-offset-2">
-            <Chart columns={[...this.state.posts.map( (post) => [post.text, post.meta.like_count]) ]}/>
+            <Chart columns={[...this.state.posts.map((post) => [post.text, post.meta.likeCount]) ]}/>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

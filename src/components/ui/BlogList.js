@@ -1,7 +1,7 @@
 import React, { DOM } from 'react';
 import _ from 'lodash';
 
-import BlogItem from './BlogItem';
+import BlogItem from '../ui/BlogItem';
 
 class BlogList extends React.Component {
   render() {
@@ -12,10 +12,10 @@ class BlogList extends React.Component {
       _.map(
         posts,
         (post) => (
-          React.createElement(BlogItem, { post: post, key: post.id, incrementLikeCount: this.props.incrementLikeCount })
+          React.createElement(BlogItem, { post, key: post.id, incrementLikeCount: this.props.incrementLikeCount })
         )
       )
-    )
+    );
   }
 }
 

@@ -11,7 +11,7 @@ const BlogItem = ({post, incrementLikeCount}) => (
     <Image {...post.image} />
     <TextBox>{post.text}</TextBox>
     <Meta {...post.meta} />
-    <Like post_id={post.id} count={post.meta.like_count} incrementLikeCount={incrementLikeCount} />
+    <Like post_id={post.id} count={post.meta.likeCount} incrementLikeCount={incrementLikeCount} />
   </div>
 );
 

@@ -11,7 +11,7 @@ class Chart extends React.Component {
           type: 'pie'
         }
       }
-    )
+    );
   }
 
   componentWillUnmount() {
@@ -23,7 +23,7 @@ class Chart extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div ref="chart" />
     );
   }

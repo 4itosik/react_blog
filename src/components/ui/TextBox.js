@@ -10,10 +10,10 @@ const TextBox = ({children}) => (
 
 TextBox.propTypes = {
   children: PropTypes.string.isRequired
-}
+};
 
 TextBox.defaultProps = {
-  children: "Default post text"
-}
+  children: 'Default post text'
+};
 
 export default TextBox;
