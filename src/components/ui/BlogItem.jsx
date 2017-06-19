@@ -1,17 +1,17 @@
-import React, { DOM } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import Image from '../ui/Image';
-import TextBox from '../ui/TextBox';
-import Meta from '../ui/Meta';
-import Like from '../ui/Like';
+import Image from 'components/ui/Image';
+import TextBox from 'components/ui/TextBox';
+import Meta from 'components/ui/Meta.jsx';
+import Like from 'components/ui/Like.jsx';
 
 const BlogItem = ({post, incrementLikeCount}) => (
   <div className='col-sm-4'>
     <Image {...post.image} />
     <TextBox>{post.text}</TextBox>
     <Meta {...post.meta} />
-    <Like post_id={post.id} count={post.meta.likeCount} incrementLikeCount={incrementLikeCount} />
+    <Like postId={post.id} count={post.meta.likeCount} incrementLikeCount={incrementLikeCount} />
   </div>
 );
 
@@ -26,7 +26,8 @@ BlogItem.propTypes = {
       likes: PropTypes.number
     }),
     image: PropTypes.shape(Image.propTypes)
-  })
-}
+  }),
+  incrementLikeCount: React.PropTypes.func
+};
 
 export default BlogItem;

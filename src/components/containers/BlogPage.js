@@ -36,7 +36,9 @@ class BlogPage extends React.Component {
 
         <div className="row">
           <div className="col-sm-8 col-sm-offset-2">
-            <Chart columns={[...this.state.posts.map((post) => [post.text, post.meta.likeCount]) ]}/>
+            <Chart columns={
+              [...this.state.posts.map((post) => [post.text, post.meta.likeCount]) ]
+            }/>
           </div>
         </div>
       </div>

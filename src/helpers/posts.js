@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const posts = [
   {
     id: 1,
