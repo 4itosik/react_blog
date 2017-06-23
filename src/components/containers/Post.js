@@ -9,7 +9,10 @@ const Post = ({ match }) => (
 
 Post.PropTypes = {
   match: React.PropTypes.shape({
-    params: PropTypes.object
+    isExact: PropTypes.bool,
+    params: PropTypes.shape({ id: PropTypes.string }),
+    path: PropTypes.string,
+    url: PropTypes.string
   })
 };
 

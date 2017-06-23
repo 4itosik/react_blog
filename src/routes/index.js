@@ -4,11 +4,12 @@ import { Route, Switch } from 'react-router-dom';
 
 import BlogPage from 'components/containers/BlogPage';
 import Post from 'components/containers/Post';
+import { postsPath } from 'helpers/routes';
 
 const Routers = () => (
   <Switch>
     <Route exact path='/' component={BlogPage}/>
-    <Route path='/posts/:id' component={Post}/>
+    <Route path={postsPath()} component={Post}/>
   </Switch>
 );
 

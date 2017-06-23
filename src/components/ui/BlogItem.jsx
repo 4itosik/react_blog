@@ -6,10 +6,13 @@ import TextBox from 'components/ui/TextBox';
 import Meta from 'components/ui/Meta.jsx';
 import Like from 'components/ui/Like.jsx';
 
+import Link from 'components/ui/shared/Link';
+import { postsPath } from 'helpers/routes/index';
+
 const BlogItem = ({post, incrementLikeCount}) => (
   <div className='col-sm-4'>
     <Image {...post.image} />
-    <TextBox>{post.text}</TextBox>
+    <Link to={postsPath(post.id)}><TextBox>{post.text}</TextBox></Link>
     <Meta {...post.meta} />
     <Like postId={post.id} count={post.meta.likeCount} incrementLikeCount={incrementLikeCount} />
   </div>
