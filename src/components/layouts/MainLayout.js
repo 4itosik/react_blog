@@ -5,7 +5,7 @@ import Header from 'components/ui/shared/Header';
 import Footer from 'components/ui/shared/Footer';
 
 const MainLayout = ({ children }) => (
-  <Grid className="container">
+  <Grid>
     <Header />
     {children}
     <Footer />

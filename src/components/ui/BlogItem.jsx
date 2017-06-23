@@ -9,13 +9,26 @@ import Like from 'components/ui/Like.jsx';
 import Link from 'components/ui/shared/Link';
 import { postsPath } from 'helpers/routes/index';
 
+import { Panel, Row, Col } from 'react-bootstrap';
+
 const BlogItem = ({post, incrementLikeCount}) => (
-  <div className='col-sm-4'>
-    <Image {...post.image} />
-    <Link to={postsPath(post.id)}><TextBox>{post.text}</TextBox></Link>
-    <Meta {...post.meta} />
-    <Like postId={post.id} count={post.meta.likeCount} incrementLikeCount={incrementLikeCount} />
-  </div>
+  <Panel>
+    <Row>
+
+      <Col md={3}>
+        <Image {...post.image} />
+      </Col>
+
+      <Col md={9}>
+        <Link to={postsPath(post.id)}><TextBox>{post.text}</TextBox></Link>
+        <Meta {...post.meta} />
+        <Like
+          postId={post.id} count={post.meta.likeCount} incrementLikeCount={incrementLikeCount}
+        />
+      </Col>
+    </Row>
+  </Panel>
+
 );
 
 BlogItem.propTypes = {

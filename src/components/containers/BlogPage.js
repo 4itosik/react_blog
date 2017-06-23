@@ -1,16 +1,32 @@
 import React from 'react';
 import _ from 'lodash';
+import request from 'superagent';
 
-import posts from 'helpers/posts';
+import { APIBaseUrl } from 'helpers/consts/APIBaseUrl';
+
 import BlogList from '../ui/BlogList';
 import Chart from '../ui/Chart';
+
+import { Row, Col } from 'react-bootstrap';
 
 class BlogPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { posts };
+    this.state = { posts: [] };
     this.incrementLikeCount = this.incrementLikeCount.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetachPosts();
+  }
+
+  fetachPosts() {
+    request.get(
+      APIBaseUrl,
+      {},
+      (err, res) => this.setState({ posts: res.body })
+    );
   }
 
   incrementLikeCount(postId) {
@@ -29,19 +45,17 @@ class BlogPage extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
+      <Row>
+        <Col md={8}>
           <BlogList posts={this.state.posts} incrementLikeCount={this.incrementLikeCount}/>
-        </div>
+        </Col>
 
-        <div className="row">
-          <div className="col-sm-8 col-sm-offset-2">
-            <Chart columns={
-              [...this.state.posts.map((post) => [post.text, post.meta.likeCount]) ]
-            }/>
-          </div>
-        </div>
-      </div>
+        <Col md={4}>
+          <Chart columns={
+            [...this.state.posts.map((post) => [post.text, post.meta.likeCount]) ]
+          }/>
+        </Col>
+      </Row>
     );
   }
 }

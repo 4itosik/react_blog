@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from 'react-bootstrap';
+import { Button, Label } from 'react-bootstrap';
 
 const Like = ({postId, count, incrementLikeCount}) => (
   <div className="text-center">
-    <Button bsStyle="info" onClick={() => incrementLikeCount(postId)}>Like {count}</Button>
+    { incrementLikeCount ?
+      <Button bsStyle="info" onClick={() => incrementLikeCount(postId)}>Like {count}</Button>
+      :
+      <Label bsStyle="primary">{count}</Label>
+    }
   </div>
 );
 

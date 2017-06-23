@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import c3 from 'c3';
 
+import { Panel } from 'react-bootstrap';
+
 class Chart extends React.Component {
   componentDidMount() {
     this.chart = c3.generate(
@@ -26,7 +28,9 @@ class Chart extends React.Component {
 
   render() {
     return (
-      <div ref="chart" />
+      <Panel>
+        <div ref="chart" />
+      </Panel>
     );
   }
 }
