@@ -12,7 +12,9 @@ const Header = () => (
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav>
-        <NavItem href="#">Posts</NavItem>
+        <li>
+          <Link to='/about'>About</Link>
+        </li>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
