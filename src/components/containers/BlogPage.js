@@ -6,10 +6,10 @@ import { APIBaseUrl } from 'helpers/consts/APIBaseUrl';
 
 import BlogList from 'components/ui/BlogList';
 import Chart from 'components/ui/Chart';
+import Pagination from 'components/ui/Pagination';
+import SearchForm from 'components/ui/SearchForm';
 
 import { Row, Col } from 'react-bootstrap';
-
-import Pagination from 'components/ui/Pagination';
 
 class BlogPage extends React.Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class BlogPage extends React.Component {
     this.state = { posts: [], renderPosts: [], currentPage: 1, per: 3, countPages: 0 };
     this.incrementLikeCount = _.bind(this.incrementLikeCount, this);
     this.handlePagination = _.bind(this.handlePagination, this);
+    this.handleSearchForm = _.bind(this.handleSearchForm, this);
   }
 
   componentDidMount() {
@@ -31,7 +32,7 @@ class BlogPage extends React.Component {
       (err, res) => {
         const posts = res.body;
         const renderPosts = this.preparePostForPagination(
-          posts, this.state.currentPage, this.state.per
+          posts, this.state.currentPage
         );
         const countPages = Math.ceil((posts.length / this.state.per));
 
@@ -47,24 +48,38 @@ class BlogPage extends React.Component {
     if (index != -1) {
       const updatePosts = _.cloneDeep(posts);
       updatePosts[index].meta.likeCount = updatePosts[index].meta.likeCount + 1;
-
+      const renderPosts = this.preparePostForPagination(updatePosts, this.state.currentPage);
       this.setState({
-        posts: this.preparePostForPagination(updatePosts, this.state.currentPage, this.state.per)
+        posts: updatePosts,
+        renderPosts
       });
     }
   }
 
   handlePagination(currentPage) {
     const { posts } = this.state;
-    const renderPosts = this.preparePostForPagination(posts, currentPage, this.state.per);
+    const renderPosts = this.preparePostForPagination(posts, currentPage);
 
     this.setState({renderPosts, currentPage});
   }
 
-  preparePostForPagination(posts, currentPage, per) {
-    const paginationPosts = _.cloneDeep(posts);
+  handleSearchForm(text) {
+    const foundText = text.toLowerCase();
+    const { posts } = this.state;
+    const searchPosts = _.filter(
+      posts, (post) => post.text.toLowerCase().indexOf(foundText) !== -1
+    );
+    const currentPage = 1;
+    const renderPosts = this.preparePostForPagination(searchPosts, currentPage);
+    const countPages = Math.ceil((searchPosts.length / this.state.per));
 
+    this.setState({renderPosts, currentPage, countPages});
+  }
+
+  preparePostForPagination(posts, currentPage, per = this.state.per) {
+    const paginationPosts = _.cloneDeep(posts);
     const skip = (currentPage - 1) * per;
+
     return paginationPosts.slice(skip, skip + per);
   }
 
@@ -74,10 +89,14 @@ class BlogPage extends React.Component {
         <Col md={8}>
           <BlogList posts={this.state.renderPosts} incrementLikeCount={this.incrementLikeCount} />
 
-          <Pagination handlePagination={this.handlePagination} items={this.state.countPages} />
+          <Pagination
+            handlePagination={this.handlePagination} items={this.state.countPages}
+            currentPage={this.state.currentPage}
+          />
         </Col>
 
         <Col md={4}>
+          <SearchForm handleSearchForm={this.handleSearchForm}/>
           <Chart columns={
             [...this.state.posts.map((post) => [post.text, post.meta.likeCount]) ]
           }/>

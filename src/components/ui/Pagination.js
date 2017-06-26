@@ -7,7 +7,7 @@ class Pagination extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { activePage: 1 };
+    this.state = { activePage: this.props.currentPage };
     this.handleSelect = _.bind(this.handleSelect, this);
   }
 
@@ -30,6 +30,7 @@ class Pagination extends React.Component {
 
 Pagination.propTypes = {
   items: PropTypes.number,
+  currentPage: PropTypes.number,
   handlePagination: PropTypes.func
 };
 
