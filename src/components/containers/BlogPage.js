@@ -4,17 +4,20 @@ import request from 'superagent';
 
 import { APIBaseUrl } from 'helpers/consts/APIBaseUrl';
 
-import BlogList from '../ui/BlogList';
-import Chart from '../ui/Chart';
+import BlogList from 'components/ui/BlogList';
+import Chart from 'components/ui/Chart';
 
 import { Row, Col } from 'react-bootstrap';
+
+import Pagination from 'components/ui/Pagination';
 
 class BlogPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { posts: [] };
-    this.incrementLikeCount = this.incrementLikeCount.bind(this);
+    this.state = { posts: [], renderPosts: [], currentPage: 1, per: 3, countPages: 0 };
+    this.incrementLikeCount = _.bind(this.incrementLikeCount, this);
+    this.handlePagination = _.bind(this.handlePagination, this);
   }
 
   componentDidMount() {
@@ -25,7 +28,15 @@ class BlogPage extends React.Component {
     request.get(
       APIBaseUrl,
       {},
-      (err, res) => this.setState({ posts: res.body })
+      (err, res) => {
+        const posts = res.body;
+        const renderPosts = this.preparePostForPagination(
+          posts, this.state.currentPage, this.state.per
+        );
+        const countPages = Math.ceil((posts.length / this.state.per));
+
+        this.setState({posts, renderPosts, countPages});
+      }
     );
   }
 
@@ -38,16 +49,32 @@ class BlogPage extends React.Component {
       updatePosts[index].meta.likeCount = updatePosts[index].meta.likeCount + 1;
 
       this.setState({
-        posts: updatePosts
+        posts: this.preparePostForPagination(updatePosts, this.state.currentPage, this.state.per)
       });
     }
+  }
+
+  handlePagination(currentPage) {
+    const { posts } = this.state;
+    const renderPosts = this.preparePostForPagination(posts, currentPage, this.state.per);
+
+    this.setState({renderPosts, currentPage});
+  }
+
+  preparePostForPagination(posts, currentPage, per) {
+    const paginationPosts = _.cloneDeep(posts);
+
+    const skip = (currentPage - 1) * per;
+    return paginationPosts.slice(skip, skip + per);
   }
 
   render() {
     return (
       <Row>
         <Col md={8}>
-          <BlogList posts={this.state.posts} incrementLikeCount={this.incrementLikeCount}/>
+          <BlogList posts={this.state.renderPosts} incrementLikeCount={this.incrementLikeCount} />
+
+          <Pagination handlePagination={this.handlePagination} items={this.state.countPages} />
         </Col>
 
         <Col md={4}>

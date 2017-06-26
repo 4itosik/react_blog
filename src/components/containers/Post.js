@@ -43,7 +43,7 @@ class Post extends React.Component {
   }
 }
 
-Post.PropTypes = {
+Post.propTypes = {
   match: React.PropTypes.shape({
     isExact: PropTypes.bool,
     params: PropTypes.shape({ id: PropTypes.string }),

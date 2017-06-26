@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import Link from 'components/ui/shared/Link';
 
 const Header = () => (
