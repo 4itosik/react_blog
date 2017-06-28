@@ -13,14 +13,14 @@ class Post extends React.Component {
   }
 
   componentDidMount() {
-    this.fetachPost();
+    this.fetchPost();
   }
 
   componentWillUnmount() {
     this.ignoreLastFetch = false;
   }
 
-  fetachPost() {
+  fetchPost() {
     const id = this.props.match.params.id;
 
     request.get(

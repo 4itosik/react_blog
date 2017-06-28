@@ -15,17 +15,17 @@ class BlogPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { posts: [], renderPosts: [], currentPage: 1, per: 3, countPages: 0 };
+    this.state = { posts: [], renderPosts: [], currentPage: 1, per: 3 };
     this.incrementLikeCount = _.bind(this.incrementLikeCount, this);
     this.handlePagination = _.bind(this.handlePagination, this);
     this.handleSearchForm = _.bind(this.handleSearchForm, this);
   }
 
   componentDidMount() {
-    this.fetachPosts();
+    this.fetchPosts();
   }
 
-  fetachPosts() {
+  fetchPosts() {
     request.get(
       APIBaseUrl,
       {},
@@ -34,9 +34,8 @@ class BlogPage extends React.Component {
         const renderPosts = this.preparePostForPagination(
           posts, this.state.currentPage
         );
-        const countPages = Math.ceil((posts.length / this.state.per));
 
-        this.setState({posts, renderPosts, countPages});
+        this.setState({posts, renderPosts});
       }
     );
   }
@@ -71,9 +70,8 @@ class BlogPage extends React.Component {
     );
     const currentPage = 1;
     const renderPosts = this.preparePostForPagination(searchPosts, currentPage);
-    const countPages = Math.ceil((searchPosts.length / this.state.per));
 
-    this.setState({renderPosts, currentPage, countPages});
+    this.setState({renderPosts, currentPage});
   }
 
   preparePostForPagination(posts, currentPage, per = this.state.per) {
@@ -90,8 +88,8 @@ class BlogPage extends React.Component {
           <BlogList posts={this.state.renderPosts} incrementLikeCount={this.incrementLikeCount} />
 
           <Pagination
-            handlePagination={this.handlePagination} items={this.state.countPages}
-            currentPage={this.state.currentPage}
+            handlePagination={this.handlePagination} currentPage={this.state.currentPage}
+            countItems={this.state.posts.length} countItemsOnPage={this.state.per}
           />
         </Col>
 

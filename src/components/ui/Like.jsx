@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import { Button, Label } from 'react-bootstrap';
 
-const Like = ({postId, count, incrementLikeCount}) => (
+const Like = ({postId, count, onClick}) => (
   <div className="text-center">
-    { incrementLikeCount ?
-      <Button bsStyle="info" onClick={() => incrementLikeCount(postId)}>Like {count}</Button>
+    { onClick ?
+      <Button bsStyle="info" onClick={() => onClick(postId)}>Like {count}</Button>
       :
       <Label bsStyle="primary">{count}</Label>
     }
@@ -16,7 +16,7 @@ const Like = ({postId, count, incrementLikeCount}) => (
 Like.propTypes = {
   postId: PropTypes.number,
   count: PropTypes.number,
-  incrementLikeCount: PropTypes.func
+  onClick: PropTypes.func
 };
 
 Like.defaultProps = {

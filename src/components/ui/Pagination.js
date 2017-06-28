@@ -6,8 +6,9 @@ import { Pagination as BsPagination } from 'react-bootstrap';
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
+    const countPage =  Math.ceil((this.props.countItems / this.props.countItemsOnPage));
 
-    this.state = { activePage: this.props.currentPage };
+    this.state = { activePage: this.props.currentPage, countPage };
     this.handleSelect = _.bind(this.handleSelect, this);
   }
 
@@ -21,7 +22,7 @@ class Pagination extends React.Component {
 
   render() {
     return (
-      <BsPagination bsSize="medium" items={this.props.items}
+      <BsPagination bsSize="medium" items={this.state.countPage}
         activePage={this.state.activePage} onSelect={this.handleSelect}
       />
     );
@@ -29,8 +30,9 @@ class Pagination extends React.Component {
 }
 
 Pagination.propTypes = {
-  items: PropTypes.number,
+  countItems: PropTypes.number,
   currentPage: PropTypes.number,
+  countItemsOnPage: PropTypes.number,
   handlePagination: PropTypes.func
 };
 
