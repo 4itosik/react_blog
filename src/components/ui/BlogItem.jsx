@@ -23,7 +23,7 @@ const BlogItem = ({post, incrementLikeCount}) => (
         <Link to={postsPath(post.id)}><TextBox>{post.text}</TextBox></Link>
         <Meta {...post.meta} />
         <Like
-          postId={post.id} count={post.meta.likeCount} incrementLikeCount={incrementLikeCount}
+          postId={post.id} count={post.meta.likeCount} onClick={incrementLikeCount}
         />
       </Col>
     </Row>

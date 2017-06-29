@@ -15,7 +15,7 @@ class BlogPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { posts: [], renderPosts: [], currentPage: 1, per: 3 };
+    this.state = { posts: [], currentPage: 1, per: 3 };
     this.incrementLikeCount = _.bind(this.incrementLikeCount, this);
     this.handlePagination = _.bind(this.handlePagination, this);
     this.handleSearchForm = _.bind(this.handleSearchForm, this);
@@ -30,12 +30,7 @@ class BlogPage extends React.Component {
       APIBaseUrl,
       {},
       (err, res) => {
-        const posts = res.body;
-        const renderPosts = this.preparePostForPagination(
-          posts, this.state.currentPage
-        );
-
-        this.setState({posts, renderPosts});
+        this.setState({posts: res.body});
       }
     );
   }
@@ -47,45 +42,44 @@ class BlogPage extends React.Component {
     if (index != -1) {
       const updatePosts = _.cloneDeep(posts);
       updatePosts[index].meta.likeCount = updatePosts[index].meta.likeCount + 1;
-      const renderPosts = this.preparePostForPagination(updatePosts, this.state.currentPage);
-      this.setState({
-        posts: updatePosts,
-        renderPosts
-      });
+
+      this.setState({posts: updatePosts});
     }
   }
 
-  handlePagination(currentPage) {
-    const { posts } = this.state;
-    const renderPosts = this.preparePostForPagination(posts, currentPage);
-
-    this.setState({renderPosts, currentPage});
+  handlePagination(newCurrentPage) {
+    this.setState({currentPage: newCurrentPage});
   }
 
   handleSearchForm(text) {
     const foundText = text.toLowerCase();
-    const { posts } = this.state;
-    const searchPosts = _.filter(
-      posts, (post) => post.text.toLowerCase().indexOf(foundText) !== -1
-    );
-    const currentPage = 1;
-    const renderPosts = this.preparePostForPagination(searchPosts, currentPage);
 
-    this.setState({renderPosts, currentPage});
+    request.get(
+      APIBaseUrl,
+      {},
+      (err, res) => {
+        const posts = res.body;
+        const searchPosts = _.filter(
+          posts, (post) => post.text.toLowerCase().indexOf(foundText) !== -1
+        );
+
+        this.setState({posts: searchPosts, currentPage: 1});
+      }
+    );
   }
 
-  preparePostForPagination(posts, currentPage, per = this.state.per) {
-    const paginationPosts = _.cloneDeep(posts);
-    const skip = (currentPage - 1) * per;
+  getPaginatedPosts() {
+    const skip = (this.state.currentPage - 1) * this.state.per;
+    const { posts } = this.state;
 
-    return paginationPosts.slice(skip, skip + per);
+    return posts.slice(skip, skip + this.state.per);
   }
 
   render() {
     return (
       <Row>
         <Col md={8}>
-          <BlogList posts={this.state.renderPosts} incrementLikeCount={this.incrementLikeCount} />
+          <BlogList posts={this.getPaginatedPosts()} incrementLikeCount={this.incrementLikeCount} />
 
           <Pagination
             handlePagination={this.handlePagination} currentPage={this.state.currentPage}
