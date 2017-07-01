@@ -22,16 +22,14 @@ class BlogPage extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchPosts();
+    this.fetchRequest((res) => { this.setState({posts: res.body}); });
   }
 
-  fetchPosts() {
+  fetchRequest(callback) {
     request.get(
       APIBaseUrl,
       {},
-      (err, res) => {
-        this.setState({posts: res.body});
-      }
+      (err, res) => callback(res)
     );
   }
 
@@ -54,18 +52,14 @@ class BlogPage extends React.Component {
   handleSearchForm(text) {
     const foundText = text.toLowerCase();
 
-    request.get(
-      APIBaseUrl,
-      {},
-      (err, res) => {
-        const posts = res.body;
-        const searchPosts = _.filter(
-          posts, (post) => post.text.toLowerCase().indexOf(foundText) !== -1
-        );
+    this.fetchRequest((res) => {
+      const posts = res.body;
+      const searchPosts = _.filter(
+        posts, (post) => post.text.toLowerCase().indexOf(foundText) !== -1
+      );
 
-        this.setState({posts: searchPosts, currentPage: 1});
-      }
-    );
+      this.setState({posts: searchPosts, currentPage: 1});
+    });
   }
 
   getPaginatedPosts() {
