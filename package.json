@@ -7,11 +7,15 @@
     "c3": "^0.4.13",
     "d3": "^4.9.1",
     "lodash": "^4.17.4",
+    "qs": "^6.5.0",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
+    "redux": "^3.7.1",
+    "redux-thunk": "^2.2.0",
     "superagent": "^3.5.2"
   },
   "devDependencies": {
