@@ -12,6 +12,8 @@ export default function(store, state) {
 
   map(
     prepareDateFns,
-    prepareData => prepareData(store, query, params, location)
+    prepareData => {
+      prepareData(store, query, params, location);
+    }
   );
 }

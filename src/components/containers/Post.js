@@ -3,7 +3,7 @@ import request from 'superagent';
 
 import { APIBaseUrl } from 'helpers/consts/APIBaseUrl';
 
-import BlogItem from 'components/ui/BlogItem.jsx';
+import BlogItem from 'components/ui/BlogItem.js';
 
 class Post extends React.Component {
   constructor(props) {

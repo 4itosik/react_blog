@@ -11,25 +11,29 @@ import { postsPath } from 'helpers/routes/index';
 
 import { Panel, Row, Col } from 'react-bootstrap';
 
-const BlogItem = ({post, incrementLikeCount}) => (
-  <Panel>
-    <Row>
+const BlogItem = ({post, incrementLikeCount}) => {
+  if (post) {
+    return (
+      <Panel>
+        <Row>
+          <Col md={3}>
+            <Image {...post.image} />
+          </Col>
 
-      <Col md={3}>
-        <Image {...post.image} />
-      </Col>
+          <Col md={9}>
+            <Link to={postsPath(post.id)}><TextBox>{post.text}</TextBox></Link>
+            <Meta {...post.meta} />
+            <Like
+              postId={post.id} count={post.meta.likeCount} onClick={incrementLikeCount}
+            />
+          </Col>
+        </Row>
+      </Panel>
+    );
+  }
 
-      <Col md={9}>
-        <Link to={postsPath(post.id)}><TextBox>{post.text}</TextBox></Link>
-        <Meta {...post.meta} />
-        <Like
-          postId={post.id} count={post.meta.likeCount} onClick={incrementLikeCount}
-        />
-      </Col>
-    </Row>
-  </Panel>
-
-);
+  return false;
+};
 
 BlogItem.propTypes = {
   post: PropTypes.shape({
