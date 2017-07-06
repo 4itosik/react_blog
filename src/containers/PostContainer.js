@@ -1,5 +1,18 @@
-import BlogItem from 'components/ui/BlogItem.js';
+import { flowRight } from 'lodash';
+
+import Post from 'components/containers/Post';
 import { connect } from 'react-redux';
+
+import * as types from 'helpers/consts/actionTypes/PostActionTypes';
+
+const likeClick = (postId) => ({
+  type: types.POST_LIKE,
+  postId
+});
+
+const actionToProps = (dispatch) => ({
+  likeClick: flowRight(dispatch, likeClick)
+});
 
 const stateToProps = (state) => ({
   post: state.post.entry,
@@ -7,4 +20,4 @@ const stateToProps = (state) => ({
   error: state.post.error
 });
 
-export default connect(stateToProps)(BlogItem);
+export default connect(stateToProps, actionToProps)(Post);

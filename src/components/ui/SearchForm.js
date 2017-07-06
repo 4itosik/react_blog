@@ -15,7 +15,7 @@ class SearchForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
 
-    this.props.handleSearchForm(this.state.text);
+    this.props.submitForm(this.state.text);
   }
 
   handleSearchValue(e) {
@@ -44,7 +44,7 @@ class SearchForm extends React.Component {
 }
 
 SearchForm.propTypes = {
-  handleSearchForm: PropTypes.func
+  submitForm: PropTypes.func
 };
 
 export default SearchForm;

@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Label } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 const Like = ({postId, count, onClick}) => (
   <div className="text-center">
-    { onClick ?
-      <Button bsStyle="info" onClick={() => onClick(postId)}>Like {count}</Button>
-      :
-      <Label bsStyle="primary">{count}</Label>
-    }
+    <Button bsStyle="info" onClick={() => onClick(postId)}>Like {count}</Button>
   </div>
 );
 

@@ -1,55 +1,22 @@
 import React, { PropTypes } from 'react';
-import request from 'superagent';
-
-import { APIBaseUrl } from 'helpers/consts/APIBaseUrl';
 
 import BlogItem from 'components/ui/BlogItem.js';
 
-class Post extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { post: null };
+const Post = ({post, likeClick}) => {
+  if (post) {
+    return <BlogItem post={post} likeClick={likeClick}/>;
   }
-
-  componentDidMount() {
-    this.fetchPost();
-  }
-
-  componentWillUnmount() {
-    this.ignoreLastFetch = false;
-  }
-
-  fetchPost() {
-    const id = this.props.match.params.id;
-
-    request.get(
-      `${APIBaseUrl}/posts/${id}`,
-      {},
-      (err, res) => (
-        !err && !this.ignoreLastFetch &&
-          this.setState({ post: (res).body })
-      )
-    );
-  }
-
-  render() {
-    const { post } = this.state;
-
-    if (post)
-      return <BlogItem post={this.state.post} />;
-    else
-      return false;
-  }
-}
+  return false;
+};
 
 Post.propTypes = {
-  match: React.PropTypes.shape({
+  post: React.PropTypes.shape({
     isExact: PropTypes.bool,
     params: PropTypes.shape({ id: PropTypes.string }),
     path: PropTypes.string,
     url: PropTypes.string
-  })
+  }),
+  likeClick: PropTypes.func
 };
 
 export default Post;

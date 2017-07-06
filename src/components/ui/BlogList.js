@@ -1,7 +1,7 @@
 import React, { DOM } from 'react';
-import _ from 'lodash';
+import { map } from 'lodash/collection';
 
-import BlogItem from 'components/ui/BlogItem.js';
+import BlogItem from 'components/ui/BlogItem';
 import PropTypes from 'prop-types';
 
 class BlogList extends React.Component {
@@ -10,11 +10,11 @@ class BlogList extends React.Component {
 
     return DOM.div(
       null,
-      _.map(
+      map(
         posts,
         (post) => (
           React.createElement(
-            BlogItem, { post, key: post.id, incrementLikeCount: this.props.incrementLikeCount }
+            BlogItem, { post, key: post.id, likeClick: this.props.likeClick }
           )
         )
       )
@@ -24,7 +24,7 @@ class BlogList extends React.Component {
 
 BlogList.propTypes = {
   posts: PropTypes.array,
-  incrementLikeCount: PropTypes.func
+  likeClick: PropTypes.func
 };
 
 export default BlogList;

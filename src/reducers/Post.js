@@ -16,6 +16,14 @@ export default function(state = initialState, action) {
       return assign({}, initialState, { error: true });
     case types.FETCH_POST_SUCCESS:
       return assign({}, initialState, { entry: action.response });
+    case types.POST_LIKE:
+      return assign({}, state, {
+        entry: assign({}, state.entry, {
+          meta: assign({}, state.entry.meta, {
+            likeCount: state.entry.meta.likeCount + 1
+          })
+        })
+      });
     default:
       return state;
   }
