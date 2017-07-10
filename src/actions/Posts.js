@@ -5,6 +5,8 @@ import { filter } from 'lodash/collection';
 import * as types from 'helpers/consts/actionTypes/PostsActionTypes';
 import { APIBaseUrl } from 'helpers/consts/APIBaseUrl';
 
+import history from 'helpers/routes/history';
+
 const requestPosts = () => ({
   type: types.FETCH_POSTS_REQUEST
 });

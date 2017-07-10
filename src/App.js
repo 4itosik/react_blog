@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import { Router, Switch, matchPath } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory';
 
 import { map } from 'lodash/collection';
 
@@ -13,13 +12,13 @@ import MainLayout from 'components/layouts/MainLayout';
 import createRoutes from 'routes';
 import RouteWithSubRoutes from 'helpers/routes/RouteWithSubRoutes';
 import prepareDate from 'helpers/routes/prepareDate';
+import history from 'helpers/routes/history';
 
 import store from 'store';
 
 import DevTools from 'containers/DevTools';
 
 const routes = createRoutes();
-const history = createHistory();
 
 function historyCb(location) {
   map(
