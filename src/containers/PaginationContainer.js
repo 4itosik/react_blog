@@ -3,12 +3,7 @@ import { flowRight } from 'lodash';
 import Pagination from 'components/ui/Pagination';
 import { connect } from 'react-redux';
 
-import * as types from 'helpers/consts/actionTypes/PostsActionTypes';
-
-const paginationClick = (page) => ({
-  type: types.POSTS_PAGINATION_CLICK,
-  page
-});
+import { paginationClick } from 'actions/Posts';
 
 const actionToProps = (dispatch) => ({
   handlePagination: flowRight(dispatch, paginationClick)

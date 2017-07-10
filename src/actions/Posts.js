@@ -18,18 +18,19 @@ const errorPosts = () => ({
   type: types.FETCH_POSTS_ERROR
 });
 
-const sortingPosts = (response, foundText) => {
-  if (foundText) {
-    const foundTextLowerCase = foundText.toLowerCase();
-    const searchPosts = filter(
-      response, (post) => post.text.toLowerCase().indexOf(foundTextLowerCase) !== -1
-    );
+export function paginationClick(page) {
+  return {
+    type: types.POSTS_PAGINATION_CLICK,
+    page
+  };
+}
 
-    return receivePosts(searchPosts);
-  } else {
-    return receivePosts(response);
-  }
-};
+export function likeClick(postId) {
+  return {
+    type: types.POSTS_LIKE,
+    postId
+  };
+}
 
 export function fetchPosts(foundText) {
   return (dispatch) => {
@@ -38,7 +39,18 @@ export function fetchPosts(foundText) {
     return request
       .get(APIBaseUrl)
       .end((err, response) => {
-        err ? dispatch(errorPosts()) : dispatch(sortingPosts(response.body, foundText));
+        if (err) {
+          return dispatch(errorPosts());
+        } else if (foundText) {
+          const foundTextLowerCase = foundText.toLowerCase();
+          const searchPosts = filter(
+            response.body, (post) => post.text.toLowerCase().indexOf(foundTextLowerCase) !== -1
+          );
+
+          return dispatch(receivePosts(searchPosts));
+        } else {
+          return dispatch(receivePosts(response.body));
+        }
       });
   };
 }

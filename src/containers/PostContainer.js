@@ -1,14 +1,9 @@
 import { flowRight } from 'lodash';
 
-import Post from 'components/containers/Post';
+import Post from 'components/views/Post';
 import { connect } from 'react-redux';
 
-import * as types from 'helpers/consts/actionTypes/PostActionTypes';
-
-const likeClick = (postId) => ({
-  type: types.POST_LIKE,
-  postId
-});
+import { likeClick } from 'actions/Post';
 
 const actionToProps = (dispatch) => ({
   likeClick: flowRight(dispatch, likeClick)

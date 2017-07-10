@@ -1,5 +1,7 @@
-import BlogPage from 'components/containers/BlogPage';
+import BlogPage from 'components/views/Posts';
 import { connect } from 'react-redux';
+
+import { identity } from 'lodash/util';
 
 const stateToProps = (state) => ({
   posts: state.posts.entries,
@@ -9,4 +11,10 @@ const stateToProps = (state) => ({
   per: state.posts.per
 });
 
-export default connect(stateToProps)(BlogPage);
+const mergeProps = (stateToProps) => {
+  const skip = (stateToProps.currentPage - 1) * stateToProps.per;
+
+  return { posts: stateToProps.posts.slice(skip, skip + stateToProps.per) };
+};
+
+export default connect(stateToProps, identity(), mergeProps)(BlogPage);

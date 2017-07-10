@@ -17,6 +17,13 @@ const receivePost = (response) => ({
   response
 });
 
+export function likeClick(postId) {
+  return {
+    type: types.POST_LIKE,
+    postId
+  };
+}
+
 export function fetchPost(id) {
   return (dispatch) => {
     dispatch(requestPost(id));

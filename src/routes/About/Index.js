@@ -1,4 +1,4 @@
-import About from 'components/containers/About';
+import About from 'components/views/About';
 import { aboutPath } from 'helpers/routes';
 
 export default {

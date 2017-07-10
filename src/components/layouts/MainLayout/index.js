@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Grid } from 'react-bootstrap';
 
-import Header from 'components/ui/shared/Header';
-import Footer from 'components/ui/shared/Footer';
+import Header from 'components/layouts/MainLayout/Header';
+import Footer from 'components/layouts/MainLayout/Footer';
 
 const MainLayout = ({ children }) => (
   <Grid>

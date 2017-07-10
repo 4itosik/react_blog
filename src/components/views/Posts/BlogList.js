@@ -1,7 +1,7 @@
 import React, { DOM } from 'react';
 import { map } from 'lodash/collection';
 
-import BlogItem from 'components/ui/BlogItem';
+import BlogItem from 'components/views/BlogItem';
 import PropTypes from 'prop-types';
 
 class BlogList extends React.Component {
