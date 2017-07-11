@@ -10,7 +10,7 @@ const Image = ({src, width, height, alt}) => (
 
 Image.propTypes = {
   src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
+  alt: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number
 };

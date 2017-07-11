@@ -19,10 +19,10 @@ const BlogItem = ({post, likeClick}) => (
       </Col>
 
       <Col md={9}>
-        <Link to={postsPath(post.id)}><TextBox>{post.text}</TextBox></Link>
+        <Link to={postsPath(post.id)}><TextBox>{post.title}</TextBox></Link>
         <Meta {...post.meta} />
         <Like
-          postId={post.id} count={post.meta.likeCount} onClick={likeClick}
+          postId={post.id} count={post.meta.likes} onClick={likeClick}
         />
       </Col>
     </Row>
