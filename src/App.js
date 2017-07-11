@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
 
-import { Router, Switch, matchPath } from 'react-router-dom';
+import { Switch, matchPath } from 'react-router-dom';
 
 import { map } from 'lodash/collection';
 
@@ -17,6 +17,8 @@ import history from 'helpers/routes/history';
 import store from 'store';
 
 import DevTools from 'containers/DevTools';
+
+import { ConnectedRouter } from 'react-router-redux';
 
 const routes = createRoutes();
 
@@ -44,7 +46,7 @@ historyCb(window.location);
 
 const App = () => (
   <Provider store={store}>
-    <Router history={history}>
+    <ConnectedRouter history={history}>
       <MainLayout>
         <Switch>
           {
@@ -54,7 +56,7 @@ const App = () => (
           }
         </Switch>
       </MainLayout>
-    </Router>
+    </ConnectedRouter>
   </Provider>
 );
 

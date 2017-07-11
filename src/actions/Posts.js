@@ -5,7 +5,9 @@ import { filter } from 'lodash/collection';
 import * as types from 'helpers/consts/actionTypes/PostsActionTypes';
 import { APIBaseUrl } from 'helpers/consts/APIBaseUrl';
 
-import history from 'helpers/routes/history';
+//import history from 'helpers/routes/history';
+
+import { push } from 'react-router-redux';
 
 const requestPosts = () => ({
   type: types.FETCH_POSTS_REQUEST
@@ -59,6 +61,7 @@ export function fetchPosts(foundText) {
               post.title.toLowerCase().indexOf(foundTextLowerCase) !== -1
             )
           );
+          dispatch(push(`/q=${foundText}`));
 
           return dispatch(receivePosts(searchPosts));
         } else {
