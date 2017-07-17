@@ -18,7 +18,7 @@ export default function(state = initialState, action) {
     case types.FETCH_POSTS_ERROR:
       return assign({}, initialState, { error: true });
     case types.FETCH_POSTS_SUCCESS:
-      return assign({}, initialState, { entries: action.response });
+      return assign({}, initialState, { entries: action.response.posts });
     case types.POSTS_PAGINATION_CLICK:
       return assign({}, state, { currentPage: action.page });
     case types.FETCH_POSTS_LIKE_REQUEST:
@@ -32,7 +32,7 @@ export default function(state = initialState, action) {
             if (post.id == action.postId) {
               return assign({}, post, {
                 meta: assign({}, post.meta, {
-                  likes: action.totalLike
+                  likes: action.response.post.meta.likes
                 })
               });
             }

@@ -15,7 +15,7 @@ export default function(state = initialState, action) {
     case types.FETCH_POST_ERROR:
       return assign({}, initialState, { error: true });
     case types.FETCH_POST_SUCCESS:
-      return assign({}, initialState, { entry: action.response });
+      return assign({}, initialState, { entry: action.response.post });
     case types.FETCH_POST_LIKE_REQUEST:
       return assign({}, state, { isFetching: true });
     case types.FETCH_POST_LIKE_ERROR:
@@ -24,7 +24,7 @@ export default function(state = initialState, action) {
       return assign({}, state, {
         entry: assign({}, state.entry, {
           meta: assign({}, state.entry.meta, {
-            likes: action.totalLike
+            likes: action.response.post.meta.likes
           })
         })
       });
