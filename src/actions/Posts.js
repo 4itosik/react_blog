@@ -4,15 +4,14 @@ import * as types from 'helpers/consts/actionTypes/PostsActionTypes';
 
 import { API_CALL } from 'middleware/API';
 
-//import history from 'helpers/routes/history';
-
-// import { push } from 'react-router-redux';
+import history from 'helpers/routes/history';
 
 export function paginationClick(page) {
-  return {
-    type: types.POSTS_PAGINATION_CLICK,
-    page
-  };
+  // return {
+  //   type: types.POSTS_PAGINATION_CLICK,
+  //   page
+  // };
+  history.push({pathname: '/', search: `?currentPage=${page}`});
 }
 
 export function likeClick(postId) {
@@ -31,12 +30,14 @@ export function likeClick(postId) {
   };
 }
 
-export function fetchPosts() {
+export function fetchPosts(query) {
+  const page = (query.currentPage || 1);
+
   return {
     [API_CALL]: {
-      endpoint: '/?per_page=100',
+      endpoint: '/',
       method: 'GET',
-      query: { },
+      query: { page },
       types: [
         types.FETCH_POSTS_REQUEST,
         types.FETCH_POSTS_SUCCESS,

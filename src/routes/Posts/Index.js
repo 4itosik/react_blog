@@ -7,7 +7,7 @@ export default {
   strict: true,
   path: '/',
   component: PostsContainer,
-  prepareDate: (store) => {
-    store.dispatch(fetchPosts());
+  prepareDate: (store, query) => {
+    store.dispatch(fetchPosts(query));
   }
 };
