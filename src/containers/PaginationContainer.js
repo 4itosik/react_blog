@@ -10,9 +10,8 @@ const actionToProps = (dispatch) => ({
 });
 
 const stateToProps = (state) => ({
-  countItems: state.posts.entries.length,
-  currentPage: state.posts.currentPage,
-  countItemsOnPage: state.posts.per
+  totalPages: state.posts.totalPages,
+  currentPage: state.posts.currentPage
 });
 
 export default connect(stateToProps, actionToProps)(Pagination);

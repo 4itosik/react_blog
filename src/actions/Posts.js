@@ -1,4 +1,4 @@
-// import { filter } from 'lodash/collection';
+import { parse, stringify } from 'qs';
 
 import * as types from 'helpers/consts/actionTypes/PostsActionTypes';
 
@@ -6,12 +6,17 @@ import { API_CALL } from 'middleware/API';
 
 import history from 'helpers/routes/history';
 
+// paginationClick() и searchFormSubmit() наверно надо вынести куда то в другое место?
+
 export function paginationClick(page) {
-  // return {
-  //   type: types.POSTS_PAGINATION_CLICK,
-  //   page
-  // };
-  history.push({pathname: '/', search: `?currentPage=${page}`});
+  const query = parse(history.location.search.substr(1));
+  query['currentPage'] = page;
+
+  history.push({pathname: '/', search: `?${stringify(query)}`});
+}
+
+export function searchFormSubmit(searchText) {
+  history.push({pathname: '/', search: `?searchText=${searchText}`});
 }
 
 export function likeClick(postId) {
@@ -31,13 +36,11 @@ export function likeClick(postId) {
 }
 
 export function fetchPosts(query) {
-  const page = (query.currentPage || 1);
-
   return {
     [API_CALL]: {
       endpoint: '/',
       method: 'GET',
-      query: { page },
+      query: { page: query.currentPage, title: query.searchText },
       types: [
         types.FETCH_POSTS_REQUEST,
         types.FETCH_POSTS_SUCCESS,

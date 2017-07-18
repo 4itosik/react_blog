@@ -7,8 +7,8 @@ const initialState = {
   isFetching: false,
   error: false,
   entries: [],
-  currentPage: 1,
-  per: 3
+  currentPage: null,
+  totalPages: null
 };
 
 export default function(state = initialState, action) {
@@ -18,7 +18,12 @@ export default function(state = initialState, action) {
     case types.FETCH_POSTS_ERROR:
       return assign({}, initialState, { error: true });
     case types.FETCH_POSTS_SUCCESS:
-      return assign({}, initialState, { entries: action.response.posts });
+      return assign({}, initialState,
+        {
+          entries: action.response.posts,
+          currentPage: action.response.meta.current_page,
+          totalPages: action.response.meta.total_pages
+        });
     case types.POSTS_PAGINATION_CLICK:
       return assign({}, state, { currentPage: action.page });
     case types.FETCH_POSTS_LIKE_REQUEST:
