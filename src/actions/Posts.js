@@ -1,5 +1,7 @@
 import { parse, stringify } from 'qs';
 
+import { decamelize } from 'humps';
+
 import * as types from 'helpers/consts/actionTypes/PostsActionTypes';
 
 import { API_CALL } from 'middleware/API';
@@ -40,7 +42,7 @@ export function fetchPosts(query) {
     [API_CALL]: {
       endpoint: '/',
       method: 'GET',
-      query: { page: query.currentPage, title: query.searchText },
+      query: { page: query.currentPage, q: { [decamelize('titleCont')]: query.searchText } },
       types: [
         types.FETCH_POSTS_REQUEST,
         types.FETCH_POSTS_SUCCESS,
