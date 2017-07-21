@@ -1,25 +1,8 @@
-import { parse, stringify } from 'qs';
-
 import { decamelize } from 'humps';
 
 import * as types from 'helpers/consts/actionTypes/PostsActionTypes';
 
 import { API_CALL } from 'middleware/API';
-
-import history from 'helpers/routes/history';
-
-// paginationClick() и searchFormSubmit() наверно надо вынести куда то в другое место?
-
-export function paginationClick(page) {
-  const query = parse(history.location.search.substr(1));
-  query['currentPage'] = page;
-
-  history.push({pathname: '/', search: `?${stringify(query)}`});
-}
-
-export function searchFormSubmit(searchText) {
-  history.push({pathname: '/', search: `?searchText=${searchText}`});
-}
 
 export function likeClick(postId) {
   return {

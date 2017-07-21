@@ -1,9 +1,18 @@
+import { parse, stringify } from 'qs';
+
 import { flowRight } from 'lodash';
 
 import Pagination from 'components/ui/Pagination';
 import { connect } from 'react-redux';
 
-import { paginationClick } from 'actions/Posts';
+import history from 'helpers/routes/history';
+
+const paginationClick = (page) => {
+  const query = parse(history.location.search.substr(1));
+  query['currentPage'] = page;
+
+  history.push({pathname: '/', search: `?${stringify(query)}`});
+};
 
 const actionToProps = (dispatch) => ({
   handlePagination: flowRight(dispatch, paginationClick)
