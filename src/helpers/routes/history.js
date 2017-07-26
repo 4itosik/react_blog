@@ -1,4 +1,5 @@
 import createHistory from 'history/createBrowserHistory';
-const history = createHistory();
+import createMemoryHistory from 'history/createMemoryHistory';
+const history = createMemoryHistory();
 
 export default history;

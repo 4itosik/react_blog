@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 
+import Image from 'components/ui/Image';
 import BlogItem from 'components/views/BlogItem';
 
 const Post = ({post, likeClick}) => {

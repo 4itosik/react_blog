@@ -10,7 +10,7 @@ export default function(store, state) {
 
   const prepareDateFns = compact(map(routes, route => route.prepareDate));
 
-  map(
+  return map(
     prepareDateFns,
     prepareData => {
       prepareData(store, query, params, location);
