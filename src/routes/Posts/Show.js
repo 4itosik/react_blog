@@ -8,6 +8,6 @@ export default {
   path: postsPath(),
   component: PostContainer,
   prepareDate: (store, query, params) => {
-    if (params.id) store.dispatch(fetchPost(params.id));
+    if (params.id) return store.dispatch(fetchPost(params.id));
   }
 };
