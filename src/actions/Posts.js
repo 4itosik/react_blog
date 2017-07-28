@@ -25,8 +25,7 @@ export function fetchPosts(query) {
     [API_CALL]: {
       endpoint: '/',
       method: 'GET',
-      // query: { page: query.currentPage, q: { [decamelize('titleCont')]: query.searchText } } TODO: return back
-      query: {},
+      query: { page: query.currentPage, q: { [decamelize('titleCont')]: query.searchText } },
       types: [
         types.FETCH_POSTS_REQUEST,
         types.FETCH_POSTS_SUCCESS,
