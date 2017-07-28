@@ -15,7 +15,9 @@ import RouteWithSubRoutes from 'helpers/routes/RouteWithSubRoutes';
 import MainLayout from 'components/layouts/MainLayout';
 
 import createRoutes from 'routes';
-import store from 'store';
+import createStore from 'store';
+
+const store = createStore();
 
 const routes = createRoutes();
 

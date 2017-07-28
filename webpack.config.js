@@ -44,4 +44,4 @@ export default {
     }),
     new webpack.HotModuleReplacementPlugin()
   ]
-}
+};

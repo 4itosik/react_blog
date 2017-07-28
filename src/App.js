@@ -14,13 +14,14 @@ import RouteWithSubRoutes from 'helpers/routes/RouteWithSubRoutes';
 import prepareDate from 'helpers/routes/prepareDate';
 import history from 'helpers/routes/history';
 
-import store from 'store';
-
 import DevTools from 'containers/DevTools';
 
 import { ConnectedRouter } from 'react-router-redux';
 
+import createStore from 'store';
+
 const routes = createRoutes();
+const store = createStore(window.__INITIAL_STATE__);
 
 function historyCb(location) {
   map(
@@ -62,7 +63,10 @@ const App = () => (
 
 ReactDOM.render(
   <DevTools store={store} />,
-  document.getElementById('devtools')
+  document.getElementById('devtools'),
+  () => {
+    delete window.__INITIAL_STATE__;
+  }
 );
 
 export default App;

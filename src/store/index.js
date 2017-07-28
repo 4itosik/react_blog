@@ -8,8 +8,9 @@ import history from 'helpers/routes/history';
 
 const middleware = routerMiddleware(history);
 
-const store = createStore(
+const store = (initialState) => createStore(
   reducers,
+  initialState,
   compose(
     applyMiddleware(APIMiddleware, middleware),
     DevTools.instrument()
