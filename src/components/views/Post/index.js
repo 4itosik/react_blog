@@ -1,19 +1,30 @@
 import React, { PropTypes } from 'react';
 
+import Helmet from 'react-helmet';
+
 import Image from 'components/ui/Image';
 import BlogItem from 'components/views/BlogItem';
 
-const Post = ({post, likeClick}) => {
-  if (post) {
-    return <BlogItem post={post} likeClick={likeClick}/>;
-  }
-  return false;
-};
+const Post = ({post, likeClick}) => (
+  <div>
+    { post && <BlogItem post={post} likeClick={likeClick}/> }
+    { post &&
+      <Helmet
+        title={post.title} meta={[
+          { name: 'description', content: post.title },
+          { name: 'keywords', content: post.title }
+        ]}
+        keywords={post.text}
+        description={post.text}
+      />
+    }
+  </div>
+);
 
 Post.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.number,
-    text: PropTypes.string,
+    title: PropTypes.string,
     meta: PropTypes.shape({
       author: PropTypes.string,
       createdAt: PropTypes.string,

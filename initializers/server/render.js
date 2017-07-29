@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 
+import Helmet from 'react-helmet';
+
 import url from 'url';
 import { parse } from 'qs';
 
@@ -23,15 +25,18 @@ const routes = createRoutes();
 
 const matchRoutes = (currentUrl) => {
   const location = url.parse(currentUrl);
+  
+  return map(
+    routes,
+    (route) => {
+      const match = matchPath(location.pathname, route);
+      const query = location.search ? parse(location.search.substr(1)) : {};
 
-  return routes.map((route) => {
-    const match = matchPath(location.pathname, route);
-    const query = location.search ? parse(location.search.substr(1)) : {};
-
-    if (match) {
-      return { route, query, props: match.params };
+      if (match) {
+        return { route, query, props: match.params };
+      }
     }
-  });
+  );
 };
 
 export default (req, res) => {
@@ -63,13 +68,15 @@ export default (req, res) => {
       </Provider>
     );
 
+    const head = Helmet.rewind();
+
     const initialState = JSON.stringify(store.getState());
 
     res.status(200);
 
     res.render(
       'index',
-      { initialState, content }
+      { initialState, content, head }
     );
   });
 };

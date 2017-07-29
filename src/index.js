@@ -11,7 +11,10 @@ ReactDOM.render(
   <AppContainer>
     <App />
   </AppContainer>,
-  rootEl
+  rootEl,
+  () => {
+    delete window.__INITIAL_STATE__;
+  }
 );
 
 if (module.hot) {

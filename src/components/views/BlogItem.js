@@ -32,7 +32,7 @@ const BlogItem = ({post, likeClick}) => (
 BlogItem.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.number,
-    text: PropTypes.string,
+    title: PropTypes.string,
     meta: PropTypes.shape({
       author: PropTypes.string,
       createdAt: PropTypes.string,

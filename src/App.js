@@ -63,10 +63,7 @@ const App = () => (
 
 ReactDOM.render(
   <DevTools store={store} />,
-  document.getElementById('devtools'),
-  () => {
-    delete window.__INITIAL_STATE__;
-  }
+  document.getElementById('devtools')
 );
 
 export default App;
