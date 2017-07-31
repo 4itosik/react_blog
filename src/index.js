@@ -7,6 +7,8 @@ import App from './App';
 
 const rootEl = document.getElementById('app');
 
+import '../css/c3.min.css';
+
 ReactDOM.render(
   <AppContainer>
     <App />
