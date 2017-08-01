@@ -1,15 +1,13 @@
-import PostContainer from 'containers/PostContainer';
+import EditPostContainer from 'containers/EditPostContainer';
 
-import { postsPath } from 'helpers/routes';
+import { editPostPath } from 'helpers/routes';
 import initialLoad from 'helpers/initialLoad';
 
 import { fetchPost } from 'actions/Post';
 
 export default {
-  path: postsPath(),
-  component: PostContainer,
-  strict: true,
-  exact: true,
+  path: editPostPath(),
+  component: EditPostContainer,
   prepareDate: (store, query, params) => {
     if (initialLoad()) return;
 
