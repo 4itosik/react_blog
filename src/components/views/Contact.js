@@ -6,6 +6,7 @@ import { mapValues } from 'lodash/object';
 import { Row, Col, Button } from 'react-bootstrap';
 
 import Text from 'components/ui/forms/Text';
+import TextArea from 'components/ui/forms/TextArea';
 
 class Contacts extends React.Component {
   constructor(props) {
@@ -23,6 +24,10 @@ class Contacts extends React.Component {
     alert(JSON.stringify(values));
   }
 
+  generateRef(fieldName) {
+    return (input) => { this.form[fieldName] = input; };
+  }
+
   render() {
     return (
       <Row>
@@ -34,12 +39,21 @@ class Contacts extends React.Component {
           <Col sm={12}>
             <form onSubmit={this.onSubmit}>
               <Text
-                label="Full Name"
-                name="Full Name"
-                fieldRef={(input) => { this.form.fullName = input; }}
+                label='Full Name'
+                name='fullName'
+                fieldRef={this.generateRef('fullName')}
               />
-
-              <Button type="submit">
+              <Text
+                label='Email'
+                name='email'
+                fieldRef={this.generateRef('email')}
+              />
+              <TextArea
+                label='Message'
+                name='message'
+                fieldRef={this.generateRef('message')}
+              />
+              <Button type='submit'>
                 Отправить
               </Button>
             </form>
