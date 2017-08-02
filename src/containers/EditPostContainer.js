@@ -20,13 +20,14 @@ const submit = (values, dispatch) => (
 export default connect(
   (state) => ({
     initialValues: {
-      id: state.post.entry.id,
-      title: state.post.entry.title,
-      author: state.post.entry.meta.author,
-      description: state.post.entry.description
+      id: state.post.entry && state.post.entry.id,
+      title: state.post.entry && state.post.entry.title,
+      author: state.post.entry && state.post.entry.meta.author,
+      description: state.post.entry && state.post.entry.description
     }
   })
 )(reduxForm({
   form: 'editPost',
-  onSubmit: submit
+  onSubmit: submit,
+  enableReinitialize : true
 })(EditPost));

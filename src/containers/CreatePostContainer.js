@@ -18,6 +18,6 @@ const submit = (values, dispatch) => (
 );
 
 export default connect()(reduxForm({
-  form: 'editPost',
+  form: 'createPost',
   onSubmit: submit
 })(CreatePost));

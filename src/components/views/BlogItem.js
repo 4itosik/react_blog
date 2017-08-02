@@ -7,7 +7,7 @@ import Meta from 'components/ui/Meta.jsx';
 import Like from 'components/ui/Like';
 
 import Link from 'components/ui/shared/Link';
-import { postsPath } from 'helpers/routes/index';
+import { postsPath, editPostPath } from 'helpers/routes';
 
 import { Panel, Row, Col } from 'react-bootstrap';
 
@@ -24,6 +24,7 @@ const BlogItem = ({post, likeClick}) => (
         <Like
           postId={post.id} count={post.meta.likes} onClick={likeClick}
         />
+        <Link to={editPostPath(post.id)}>Edit post</Link>
       </Col>
     </Row>
   </Panel>
