@@ -6,6 +6,8 @@ import initialLoad from 'helpers/initialLoad';
 import { fetchPost } from 'actions/Post';
 
 export default {
+  exact: true,
+  strict: true,
   path: editPostPath(),
   component: EditPostContainer,
   prepareDate: (store, query, params) => {

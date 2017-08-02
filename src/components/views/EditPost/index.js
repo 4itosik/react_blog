@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
 
-import { Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 
 import { Field } from 'redux-form';
+
+import BootsrapFormControl from 'components/ui/forms/BootsrapFormControl';
 
 const EditPost = ({initialValues, handleSubmit}) => (
   <Row>
@@ -12,10 +14,28 @@ const EditPost = ({initialValues, handleSubmit}) => (
 
     <Col sm={12}>
       <form onSubmit={handleSubmit}>
-        <FormGroup controlId='title'>
-          <ControlLabel>Title</ControlLabel>
-          <Field component="input" type="text" name="title" id="title" />
-        </FormGroup>
+        <Field
+          label="Title"
+          component={BootsrapFormControl}
+          type="text"
+          name="title"
+          id="title"
+        />
+
+        <Field
+          label="Author"
+          component={BootsrapFormControl}
+          type="text"
+          name="author" id="author"
+        />
+
+        <Field
+          label="Description"
+          component={BootsrapFormControl}
+          name="description"
+          id="description"
+          componentClass="textarea"
+        />
 
         <Button type='submit'>
           Update
@@ -26,11 +46,7 @@ const EditPost = ({initialValues, handleSubmit}) => (
 );
 
 EditPost.propTypes = {
-  initialValues: {
-    title: PropTypes.string,
-    author: PropTypes.string,
-    createdAt: PropTypes.string
-  },
+  initialValues: PropTypes.object,
   handleSubmit: PropTypes.func
 };
 

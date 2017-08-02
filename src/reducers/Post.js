@@ -28,6 +28,12 @@ export default function(state = initialState, action) {
           })
         })
       });
+    case types.FETCH_POST_UPDATE_REQUEST:
+      return assign({}, state, { isFetching: true });
+    case types.FETCH_POST_UPDATE_ERROR:
+      return assign({}, state, { isFetching: false, error: true });
+    case types.FETCH_POST_UPDATE_SUCCESS:
+      return assign({}, initialState, { entry: action.response.post });
     default:
       return state;
   }

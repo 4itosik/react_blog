@@ -1,14 +1,33 @@
 //import { flowRight } from 'lodash';
 import EditPost from 'components/views/EditPost';
+
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm, SubmissionError } from 'redux-form';
+import { push } from 'react-router-redux';
+
+import { updatePost } from 'actions/Post';
+
+const submit = (values, dispatch) => (
+  dispatch(updatePost(values)).then(
+    (data) => {
+      dispatch(push(`/posts/${data.post.id}`));
+    },
+    (error) => {
+      throw new SubmissionError(error.response.body);
+    }
+  )
+);
 
 export default connect(
   (state) => ({
     initialValues: {
+      id: state.post.entry.id,
       title: state.post.entry.title,
-      author: state.post.entry.author,
-      createdAt: state.post.entry.createdAt
+      author: state.post.entry.meta.author,
+      description: state.post.entry.description
     }
   })
-)(reduxForm({ form: 'editPost' })(EditPost));
+)(reduxForm({
+  form: 'editPost',
+  onSubmit: submit
+})(EditPost));

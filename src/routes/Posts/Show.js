@@ -8,8 +8,8 @@ import { fetchPost } from 'actions/Post';
 export default {
   path: postsPath(),
   component: PostContainer,
-  strict: true,
   exact: true,
+  strict: true,
   prepareDate: (store, query, params) => {
     if (initialLoad()) return;
 

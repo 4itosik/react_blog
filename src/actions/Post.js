@@ -33,3 +33,22 @@ export function fetchPost(postId) {
     postId
   };
 }
+
+export function updatePost(values) {
+  const postId = values.id;
+
+  return {
+    [API_CALL]: {
+      endpoint: `/posts/${postId}`,
+      method: 'PATCH',
+      query: {},
+      payload: { post: values },
+      types: [
+        types.FETCH_POST_UPDATE_REQUEST,
+        types.FETCH_POST_UPDATE_SUCCESS,
+        types.FETCH_POST_UPDATE_ERROR
+      ]
+    },
+    postId
+  };
+}
