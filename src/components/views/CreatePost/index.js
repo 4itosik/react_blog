@@ -4,10 +4,10 @@ import { Row, Col } from 'react-bootstrap';
 
 import Form from 'components/ui/PostForm';
 
-const EditPost = ({initialValues, handleSubmit}) => (
+const CreatePost = ({handleSubmit}) => (
   <Row>
     <Col sm={12}>
-      <h1>Edit post {initialValues.title}</h1>
+      <h1>Create New Post</h1>
     </Col>
 
     <Col sm={12}>
@@ -16,9 +16,9 @@ const EditPost = ({initialValues, handleSubmit}) => (
   </Row>
 );
 
-EditPost.propTypes = {
+CreatePost.propTypes = {
   initialValues: PropTypes.object,
   handleSubmit: PropTypes.func
 };
 
-export default EditPost;
+export default CreatePost;

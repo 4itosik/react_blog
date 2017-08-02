@@ -1,4 +1,3 @@
-//import { flowRight } from 'lodash';
 import EditPost from 'components/views/EditPost';
 
 import { connect } from 'react-redux';

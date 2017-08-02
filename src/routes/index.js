@@ -1,13 +1,16 @@
 import IndexRoute from 'routes/Posts/Index';
 import ShowPostRoute from 'routes/Posts/Show';
 import EditPostRoute from 'routes/Posts/Edit';
+import CreatePostRoute from 'routes/Posts/Create';
+
 import AboutRoute from 'routes/About/Index';
 import ContactRoute from 'routes/Contact/Index';
 
 export default () => ([
   IndexRoute,
-  ShowPostRoute,
+  CreatePostRoute,
   EditPostRoute,
+  ShowPostRoute,
   AboutRoute,
   ContactRoute
 ]);
