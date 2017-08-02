@@ -29,5 +29,5 @@ export default connect(
 )(reduxForm({
   form: 'editPost',
   onSubmit: submit,
-  enableReinitialize : true
+  enableReinitialize: true
 })(EditPost));

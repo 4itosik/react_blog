@@ -12,7 +12,8 @@ const actionToProps = (dispatch) => ({
 const stateToProps = (state) => ({
   post: state.post.entry,
   isFetching: state.post.isFetching,
-  error: state.post.error
+  error: state.post.error,
+  comments: state.post.comments
 });
 
 export default connect(stateToProps, actionToProps)(Post);

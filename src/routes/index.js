@@ -3,6 +3,8 @@ import ShowPostRoute from 'routes/Posts/Show';
 import EditPostRoute from 'routes/Posts/Edit';
 import CreatePostRoute from 'routes/Posts/Create';
 
+import CreateCommentRoute from 'routes/Comments/Create';
+
 import AboutRoute from 'routes/About/Index';
 import ContactRoute from 'routes/Contact/Index';
 
@@ -12,5 +14,6 @@ export default () => ([
   EditPostRoute,
   ShowPostRoute,
   AboutRoute,
-  ContactRoute
+  ContactRoute,
+  CreateCommentRoute
 ]);

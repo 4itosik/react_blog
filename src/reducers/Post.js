@@ -5,7 +5,8 @@ import * as types from 'helpers/consts/actionTypes/PostActionTypes';
 const initialState = {
   isFetching: false,
   error: false,
-  entry: null
+  entry: null,
+  comments: []
 };
 
 export default function(state = initialState, action) {

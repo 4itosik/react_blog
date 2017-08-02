@@ -17,7 +17,6 @@ const CreatePost = ({handleSubmit}) => (
 );
 
 CreatePost.propTypes = {
-  initialValues: PropTypes.object,
   handleSubmit: PropTypes.func
 };
 

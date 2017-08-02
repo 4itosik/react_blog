@@ -68,3 +68,22 @@ export function createPost(values) {
     }
   };
 }
+
+export function createCommentForPost(values) {
+  const postId = values.id;
+
+  return {
+    [API_CALL]: {
+      endpoint: `/posts/${postId}/comments`,
+      method: 'POST',
+      query: {},
+      payload: { comment: values },
+      types: [
+        types.FETCH_POST_COMMENT_REQUEST,
+        types.FETCH_POST_COMMENT_SUCCESS,
+        types.FETCH_POST_COMMENT_ERROR
+      ]
+    },
+    postId
+  };
+}
