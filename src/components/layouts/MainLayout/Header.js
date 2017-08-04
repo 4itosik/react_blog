@@ -14,15 +14,15 @@ const Header = () => (
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav>
-        <li>
+        <li active={false}>
           <Link to={aboutPath()}>About</Link>
         </li>
 
-        <li>
+        <li active={false}>
           <Link to={contactPage()}>Contact</Link>
         </li>
 
-        <li>
+        <li active={false}>
           <Link to={createPostPath()}>Create New post</Link>
         </li>
       </Nav>

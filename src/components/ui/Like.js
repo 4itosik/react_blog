@@ -5,7 +5,10 @@ import { Button } from 'react-bootstrap';
 
 const Like = ({postId, count, onClick}) => (
   <div className="text-center">
-    <Button bsStyle="info" onClick={() => onClick(postId)}>Like {count}</Button>
+    <Button bsStyle="info" onClick={() => onClick(postId)}>
+      Like
+      <div className="like-count">{count}</div>
+    </Button>
   </div>
 );
 

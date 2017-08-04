@@ -45,4 +45,8 @@ BlogItem.propTypes = {
   likeClick: React.PropTypes.func
 };
 
+BlogItem.defaultProps = {
+  post: { meta: {} }
+};
+
 export default BlogItem;
